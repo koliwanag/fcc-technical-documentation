@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Flexbox Documentation</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./main.css" type="text/css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,700" rel="stylesheet">
+    </head>
+
+
+    <body>
+
+        
+        <input id="toggle" type="checkbox">  
+
+        <div id="grid">
+
+                        
+            <nav>
+                <header>
+                    <h1>Flexbox Documentation</h1>
+                </header>
+                <ul>
+                    <li><a href="#What_is_Flexbox?" class="nav-link">What is Flexbox?</a></li>
+                    <li><a href="#Why_Flexbox?" class="nav-link">Why Flexbox?</a></li>
+                    <li><a href="#Terminologies" class="nav-link">Terminologies</a></li>
+                    <li><a href="#Container_Properties" class="nav-link">Container Properties</a></li>
+                    <li><a href="#Items_Properties" class="nav-link">Items Properties</a></li>
+                    <li><a href="#References" class="nav-link">References</a></li>
+                </ul>             
+            </nav>
+            
+
+            <label for="toggle" id="toggle-label"><img src="./images/arrows.png"></label>
+
+
+            <main>
+
+
+
+                <section id="What_is_Flexbox?">
+                    <header>
+                        <h2>What is Flexbox?</h2>
+                    </header>
+                    <article>
+                        <p>Flexbox is a one-dimensional layout model that lays out or aligns items within a container regarless of whether
+                            the size of the items is unknown or dynamic, hence the word "Flex". The main idea behind the flex layout is to give 
+                            the container the ability to alter its items' width/height (and order) to best fill the available space (mostly
+                             to accommodate to all kind of display devices and screen sizes). A flex container expands items to fill 
+                             available free space, or shrinks them to prevent overflow.</p>
+                        <p>Most importantly, the flexbox layout is direction-agnostic as opposed to the regular layouts (block which is 
+                            vertically-based and inline which is horizontally-based). While those work well for pages, they lack flexibility 
+                            (no pun intended) to support large or complex applications (especially when it comes to orientation changing, 
+                            resizing, stretching, shrinking, etc.).</p>
+                    </article>
+                </section>
+
+
+                <section id="Why_Flexbox?">
+                    <header>
+                        <h2>Why Flexbox?</h2>
+                    </header>
+                    <article>
+                        <p>For a long time, the only reliable cross browser-compatible tools available for creating CSS layouts were things
+                             like floats and positioning. These are fine and they work, but in some ways they are also rather limiting and frustrating.</p>
+                        <p>The following simple layout requirements are either difficult or impossible to achieve with such tools, in any 
+                            kind of convenient, flexible way:</p>
+                        <ul>
+                            <li>Vertically centering a block of content inside its parent.</li>
+                            <li>Making all the children of a container take up an equal amount of the available width/height, regardless 
+                                of how much width/height is available.</li>
+                            <li>Making all columns in a multiple column layout adopt the same height even if they contain a different amount of content.</li>
+                        </ul>         
+                    </article>
+
+                </section>
+
+
+                <section id="Terminologies">
+                    <header>
+                        <h2>Terminologies</h2>
+                    </header>
+                    <article>
+                        <p>Since flexbox is a whole module and not a single property, it involves a lot of things including its whole set of properties
+                            and other factors that affect its behavior. Here are some terms to familiarize:</p>
+                        <ul>
+                            <li><strong>Main axis</strong> - The main axis of a flex container is the primary axis along which flex items are laid out. 
+                                Beware, it is not necessarily horizontal; it depends on the flex-direction property.</li>
+                            <li><strong>Main-start | Main-end</strong> - The flex items are placed within the container starting from main-start and 
+                                going to main-end.</li>
+                            <li><strong>Main size</strong> - A flex item's width or height, whichever is in the main dimension, is the item's main size. 
+                                The flex item's main size property is either the &#34;width&#34; or &#34;height&#34; property, whichever is in the main dimension.</li>
+                            <li><strong>Cross axis</strong> - The axis perpendicular to the main axis is called the cross axis. Its direction depends 
+                                on the main axis direction.</li>
+                            <li><strong>Cross-start | Cross-end</strong> - Flex lines are filled with items and placed into the container starting on 
+                                the cross-start side of the flex container and going toward the cross-end side.</li>
+                            <li><strong>Cross size</strong> - The width or height of a flex item, whichever is in the cross dimension, is the item's 
+                                cross size. The cross size property is whichever of &#34;width&#34; or &#34;height&#34; that is in the cross dimension.</li>
+                        </ul>
+                        <figure>
+                            <figcaption>Here is an image illustrating the above terms:</figcaption>
+                            <img src="./images/flex-direction-terms.svg" alt="flex direction terms">
+                        </figure>
+                    </article>
+                </section>
+
+                <section id="Container_Properties">
+                    <header>
+                        <h2>Container Properties</h2>
+                    </header>
+                    <article>
+                        <h3>Display</h3>
+                        <p>This defines a flex container; inline or block depending on the given value. It enables a flex context for all its 
+                            direct children.</p>
+                        <p><em>Note: All these properties are set in the CSS file or within the style element.</em></p>
+                        <pre>
+                            <code>
+                                <span class="yellow">div</span> {           
+                                    <span class="blue">display</span>: <span class="orange">flex</span>;       
+                                }                                
+                            </code>
+                        </pre>
+                        <h3>Flex-direction</h3>
+                        <p>This establishes the main-axis, thus defining the direction flex items are placed in the flex container. Flexbox is 
+                            (aside from optional wrapping) a single-direction layout concept. Think of flex items as primarily laying out either 
+                            in horizontal rows or vertical columns.</p>
+                        <pre>
+                            <code>
+                                <span class="yellow">div</span> {
+                                    <span class="blue">flex-direction</span>: <span class="orange">row</span>;
+                                }
+                                &#47;&#42;-- the default value: left to right --&#42;&#47; 
+
+
+                                <span class="yellow">div</span> {
+                                    <span class="blue">flex-direction</span>: <span class="orange">row-reverse</span>;
+                                }
+                                &#47;&#42;-- right to left --&#42;&#47;
+
+
+                                <span class="yellow">div</span> {
+                                    <span class="blue">flex-direction</span>: <span class="orange">column</span>;
+                                }
+
+                                &#47;&#42;-- same as row but top to bottom --&#42;&#47;
+
+
+                                <span class="yellow">div</span> {
+                                    <span class="blue">flex-direction</span>: <span class="orange">column-reverse</span>;
+                                }
+
+                                &#47;&#42;-- same as row-reverse but bottom 
+                                    to top--&#42;&#47;   
+                            </code>
+                        </pre>
+                        <h3>Flex-wrap</h3>
+                        <p>By default, flex items will all try to fit onto one line. You can change that and allow the items to wrap as 
+                            needed with this property.</p>
+                        <pre>
+                            <code>
+                                <span class="yellow">div</span> {
+                                    <span class="blue">flex-wrap</span>: <span class="orange">no-wrap</span>;
+                                }
+
+                                &#47;&#42;-- default: all flex items 
+                                    will be on one line --&#42;&#47;
+
+
+                                <span class="yellow">div</span> {
+                                    <span class="blue">flex-wrap</span>: <span class="orange">wrap</span>;
+                                }
+
+                                &#47;&#42;-- flex items will wrap onto 
+                                    multiple lines, from top to 
+                                    bottom. --&#42;&#47; 
+
+                                
+                                <span class="yellow">div</span> {
+                                    <span class="blue">flex-wrap</span>: <span class="orange">wrap-reverse</span>;
+                                }
+
+                                &#47;&#42;--  flex items will wrap onto 
+                                multiple lines from bottom to top. --&#42;&#47;  
+                            </code>
+                        </pre>
+                        <h3>Flex-flow</h3>
+                        <p>This is a shorthand <strong>flex-direction</strong> and <strong>flex-wrap</strong> properties, which together define 
+                            the flex container's main and cross axes. Default is row nowrap.</p>
+                        <pre>
+                            <code>
+                                <span class="yellow">div</span> {
+                                    <span class="blue">flex-flow</span>: <span class="orange">flex-direction flex-wrap</span>;  
+                                }                                         
+                            </code>
+                        </pre>
+                        <h3>Jusify-content</h3>
+                        <p>This defines the alignment along the main axis. It helps distribute extra free space left over when either all the flex items 
+                            on a line are inflexible, or are flexible but have reached their maximum size. It also exerts some control over the alignment 
+                            of items when they overflow the line.</p>
+                        <pre>
+                            <code>
+                                <span class="yellow">div</span> {
+                                    <span class="blue">jusify-content</span>: <span class="orange">flex-start</span>;
+                                }
+
+                                &#47;&#42;-- default: items are packed 
+                                    toward the start line --&#42;&#47;
+
+
+                                <span class="yellow">div</span> {
+                                    <span class="blue">jusify-content</span>: <span class="orange">flex-end</span>;
+                                }
+
+                                &#47;&#42;-- items are packed toward the 
+                                    end line --&#42;&#47;
+
+
+                                <span class="yellow">div</span> {
+                                    <span class="blue">jusify-content</span>: <span class="orange">center</span>;
+                                }
+
+                                &#47;&#42;-- items are centered along 
+                                    the line --&#42;&#47;
+
+
+                                <span class="yellow">div</span> {
+                                    <span class="blue">jusify-content</span>: <span class="orange">space-between</span>;
+                                }
+
+                                &#47;&#42;-- items are evenly distributed 
+                                    in the line; first item is on 
+                                    the start line, last item on the 
+                                    end line --&#42;&#47;
+
+
+                                <span class="yellow">div</span> {
+                                    <span class="blue">jusify-content</span>: <span class="orange">space-around</span>;
+                                }
+
+                                &#47;&#42;-- items are evenly distributed 
+                                    in the line with equal space 
+                                    around them. Note that visually 
+                                    the spaces aren't equal, since all 
+                                    the items have equal space on both 
+                                    sides. The first item will have 
+                                    one unit of space against the 
+                                    container edge, but two units of 
+                                    space between the next item because 
+                                    that next item has its own spacing 
+                                    that applies. --&#42;&#47;
+
+
+                                <span class="yellow">div</span> {
+                                    <span class="blue">jusify-content</span>: <span class="orange">space-evenly</span>;
+                                }
+
+                                &#47;&#42;-- items are distributed so that 
+                                    the spacing between any two 
+                                    items (and the space to the 
+                                    edges) is equal. --&#42;&#47;
+                            </code>
+                        </pre>
+                        <h3>Align-items</h3>
+                        <p>This defines the default behavior for how flex items are laid out along the cross axis on the current line. Think of it as 
+                            the justify-content version for the cross-axis (perpendicular to the main-axis).</p>
+                        <pre>
+                            <code>
+                                <span class="yellow">div</span> {
+                                    <span class="blue">align-items</span>: <span class="orange">flex-start</span>;
+                                }
+
+                                &#47;&#42;-- cross-start margin edge 
+                                    of the items is placed on 
+                                    the cross-start line --&#42;&#47;
+
+
+                                <span class="yellow">div</span> {
+                                    <span class="blue">align-items</span>: <span class="orange">flex-end</span>;
+                                }
+
+                                &#47;&#42;-- cross-end margin edge 
+                                    of the items is placed on 
+                                    the cross-end line --&#42;&#47;
+
+                                
+                                <span class="yellow">div</span> {
+                                    <span class="blue">align-items</span>: <span class="orange">center</span>;
+                                }
+
+                                &#47;&#42;-- items are centered in 
+                                    the cross-axis --&#42;&#47;
+
+
+                                <span class="yellow">div</span> {
+                                    <span class="blue">align-items</span>: <span class="orange">baseline</span>;
+                                }
+
+                                &#47;&#42;-- items are aligned such 
+                                    as their baselines align --&#42;&#47;
+
+
+                                <span class="yellow">div</span> {
+                                    <span class="blue">align-items</span>: <span class="orange">stretch</span>;
+                                }
+
+                                &#47;&#42;-- default: stretch to 
+                                    fill the container (still 
+                                    respect min-width/max-width) --&#42;&#47;   
+                            </code>
+                        </pre>
+                        <h3>Align-content</h3>
+                        <p>This aligns a flex container's lines within when there is extra space in the cross-axis, similar to how justify-content 
+                            aligns individual items within the main-axis.</p>
+                        <p><em>Note: this property has no effect when there is only one line of flex items.</em></p>
+                        <pre>
+                            <code>
+                                <span class="yellow">div</span> {
+                                    <span class="blue">align-content</span>: <span class="orange">flex-start</span>;
+                                }
+
+                                &#47;&#42;-- lines are packed to the 
+                                    start of the container --&#42;&#47;
+
+
+                                <span class="yellow">div</span> {
+                                    <span class="blue">align-content</span>: <span class="orange">flex-end</span>;
+                                }
+
+                                &#47;&#42;-- lines are packed to the 
+                                    end of the container --&#42;&#47;
+
+
+                                <span class="yellow">div</span> {
+                                    <span class="blue">align-content</span>: <span class="orange">center</span>;
+                                }
+
+                                &#47;&#42;-- lines are packed to the 
+                                    center of the container --&#42;&#47;
+
+
+                                <span class="yellow">div</span> {
+                                    <span class="blue">align-content</span>: <span class="orange">space-between</span>;
+                                }
+
+                                &#47;&#42;-- lines evenly distributed; 
+                                    the first line is at the 
+                                    start of the container while 
+                                    the last one is at the end --&#42;&#47;
+
+
+                                <span class="yellow">div</span> {
+                                    <span class="blue">align-content</span>: <span class="orange">space-around</span>;
+                                }
+
+                                &#47;&#42;-- lines evenly distributed 
+                                    with equal space around 
+                                    each line --&#42;&#47;
+
+
+                                <span class="yellow">div</span> {
+                                    <span class="blue">align-content</span>: <span class="orange">stretch</span>;
+                                }
+
+                                &#47;&#42;-- default: lines stretch to 
+                                    take up the remaining space --&#42;&#47;    
+                            </code>
+                        </pre>
+                    </article>
+                    
+                </section>
+                    
+                <section id="Items_Properties">
+                    <header>
+                        <h2>Items Properties</h2>
+                    </header>
+                    <article>
+                        <h3>Order</h3>
+                        <p>By default, flex items are laid out in the source order. However, the order property controls the order in which they 
+                            appear in the flex container.</p>
+                        <pre>
+                            <code>
+                                <span class="yellow">div</span> {
+                                    <span class="blue">order</span>: <span class="orange">&#60;integer&#62;</span>;       
+                                }
+
+                                &#47;&#42;-- default is 0--&#42;&#47;           
+                            </code>
+                        </pre>
+                        <h3>Flex-grow</h3>
+                        <p>This defines the ability for a flex item to grow if necessary. It accepts a unitless value that serves as a proportion. 
+                            It dictates what amount of the available space inside the flex container the item should take up.</p>
+                        <p>If all items have flex-grow set to 1, the remaining space in the container will be distributed equally to all children. 
+                            If one of the children has a value of 2, the remaining space would take up twice as much space as the others (or it 
+                            will try to, at least).</p>
+                        <pre>
+                            <code>
+                                <span class="yellow">div</span> {
+                                    <span class="blue">flex-grow</span>: <span class="orange">&#60;number&#62;</span>;
+                                }
+
+                                &#47;&#42;-- default is 0, 
+                                    negative numbers are invalid--&#42;&#47;    
+                            </code>
+                        </pre>
+                        <h3>Flex-shrink</h3>
+                        <p>This defines the ability for a flex item to shrink if necessary. Negative numbers are invalid.</p>
+                        <pre>
+                            <code>
+                                <span class="yellow">div</span> {
+                                    <span class="blue">flex-shrink</span>: <span class="orange">&#60;number&#62;</span>;         
+                                }
+
+                                &#47;&#42;-- default is 1 --&#42;&#47;            
+                            </code>
+                        </pre>
+                        <h3>Flex-basis</h3>
+                        <p>This defines the default size of an element before the remaining space is distributed. It can be a length 
+                            (e.g. 20%, 5rem, etc.) or a keyword. The auto keyword means "look at my width or height property" (which was temporarily 
+                            done by the main-size keyword until deprecated). The content keyword means "size it based on the item's content" - this 
+                            keyword isn't well supported yet, so it's hard to test and harder to know what its brethren max-content, min-content, and 
+                            fit-content do.</p>
+                        <p>If set to 0, the extra space around content isn't factored in. If set to auto, the extra space is distributed based on its 
+                            flex-grow value.</p>
+                        <pre>
+                            <code>
+                                <span class="yellow">div</span> {
+                                    <span class="blue">flex-basis</span>: <span class="orange">&#60;length&#62; &#124; auto</span>;       
+                                }           
+
+                                &#47;&#42;-- default is auto --&#42;&#47;            
+                            </code>
+                        </pre>
+                        <h3>Flex</h3>
+                        <p>This is the shorthand for flex-grow, flex-shrink and flex-basis combined. The second and third parameters (flex-shrink 
+                            and flex-basis) are optional. Default is 0 1 auto.</p>
+                        <p>It is recommended that you use this shorthand property rather than set the individual properties. The short hand sets 
+                            the other values intelligently.</p>
+                        <pre>
+                            <code>
+                                <span class="yellow">div</span> {
+                                    <span class="blue">flex</span>: <span class="orange">flex-grow flex-shrink flex-basis</span>; 
+                                }                                           
+                            </code>
+                        </pre>
+                        <h3>Align-self</h3>
+                        <p>This allows the default alignment (or the one specified by align-items) to be overridden for individual flex items.
+                            Note that float, clear and vertical-align 
+                            have no effect on a flex item.</p>
+                        <pre>
+                            <code>
+                                &#47;&#42;-- Please see the align-items        
+                                    explanation to understand the 
+                                    available values.--&#42;&#47;
+
+
+                                <span class="yellow">div</span> {
+                                    <span class="blue">align-self</span>: <span class="orange">auto</span>;
+                                }
+
+
+                                <span class="yellow">div</span> {
+                                    <span class="blue">align-self</span>: <span class="orange">flex-start</span>;
+                                }
+
+
+                                <span class="yellow">div</span> {
+                                    <span class="blue">align-self</span>: <span class="orange">flex-end</span>;
+                                }
+
+                                
+                                <span class="yellow">div</span> {
+                                    <span class="blue">align-self</span>: <span class="orange">center</span>;
+                                }
+
+
+                                <span class="yellow">div</span> {
+                                    <span class="blue">align-self</span>: <span class="orange">baseline</span>;
+                                }
+
+
+                                <span class="yellow">div</span> {
+                                    <span class="blue">align-self</span>: <span class="orange">stretch</span>;
+                                }
+
+                            </code>
+                        </pre>
+                    </article>
+                </section>
+
+                <section id="References">
+                    <header>
+                        <h2>References</h2>
+                    </header>
+                    <footer>
+                        <p>All content and references are taken from these sites:</p>
+                        <ul>
+                            <li><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank">CSS Tricks: A Complete Guide to Flexbox</a></li>
+                            <li><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox" target="_blank">Flexbox &#124; MDN</a></li>
+                            <li><a href="https://learn.freecodecamp.org/responsive-web-design/css-flexbox" target="_blank">Freecodecamp CSS Flexbox</a></li>
+                        </ul>
+                    </footer>
+                    
+                </section>
+
+                
+
+
+
+            </main>
+        
+
+        </div>
+        
+          
+
+    
+
+    </body>
+
+
+</html>
